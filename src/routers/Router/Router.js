@@ -1,6 +1,8 @@
 import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import Main from '../../layouts/Main/Main';
+import BlogDetails from '../../pages/Blogs/BlogDetails/BlogDetails';
+import Blogs from '../../pages/Blogs/Blogs/Blogs';
 import Error404 from '../../pages/Error404/Error404';
 import Home from '../../pages/Home/Home/Home';
 import MyReviews from '../../pages/MyReviews/MyReviews/MyReviews';
@@ -18,11 +20,23 @@ const router = createBrowserRouter([
             },
             {
                 path: '/services',
-                element: <Services></Services>
+                element: <Services></Services>,
+                loader: () => fetch('http://localhost:5000/services')
             },
             {
                 path: '/services/:id',
-                element: <ServiceDetails></ServiceDetails>
+                element: <ServiceDetails></ServiceDetails>,
+                loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`)
+            },
+            {
+                path: '/blogs',
+                element: <Blogs></Blogs>,
+                loader: () => fetch('http://localhost:5000/blogs')
+            },
+            {
+                path: '/blogs/:id',
+                element: <BlogDetails></BlogDetails>,
+                loader: ({ params }) => fetch(`http://localhost:5000/blogs/${params.id}`)
             },
             {
                 path: '/myreviews',
