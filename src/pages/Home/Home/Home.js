@@ -2,7 +2,7 @@ import React from 'react';
 
 const Home = () => {
     return (
-        <div>
+        <div className='container mx-auto rounded-xl' style={{ 'margin-top': '20px', 'borderRadius': '10px' }}>
             home
         </div>
     );
