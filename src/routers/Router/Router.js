@@ -1,13 +1,16 @@
 import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import Main from '../../layouts/Main/Main';
+import AddService from '../../pages/AddService/AddService';
 import BlogDetails from '../../pages/Blogs/BlogDetails/BlogDetails';
 import Blogs from '../../pages/Blogs/Blogs/Blogs';
 import Error404 from '../../pages/Error404/Error404';
 import Home from '../../pages/Home/Home/Home';
 import MyReviews from '../../pages/MyReviews/MyReviews/MyReviews';
-import ServiceDetails from '../../pages/ServiceDetails/ServiceDetails';
 import Services from '../../pages/Services/Services/Services';
+import SignIn from '../../pages/SignUpAndLogin/Login/SignIn';
+import SignUp from '../../pages/SignUpAndLogin/SignUp/SignUp';
+import PrivateRouter from '../PrivateRouter/PrivateRouter';
 
 const router = createBrowserRouter([
     {
@@ -24,9 +27,7 @@ const router = createBrowserRouter([
                 loader: () => fetch('http://localhost:5000/services')
             },
             {
-                path: '/services/:id',
-                element: <ServiceDetails></ServiceDetails>,
-                loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`)
+                path: '/services/:id'
             },
             {
                 path: '/blogs',
@@ -40,7 +41,19 @@ const router = createBrowserRouter([
             },
             {
                 path: '/myreviews',
-                element: <MyReviews></MyReviews>
+                element: <PrivateRouter><MyReviews></MyReviews></PrivateRouter>
+            },
+            {
+                path: '/addservice',
+                element: <PrivateRouter><AddService></AddService></PrivateRouter>
+            },
+            {
+                path: '/signup',
+                element: <SignUp></SignUp>
+            },
+            {
+                path: '/signin',
+                element: <SignIn></SignIn>
             },
             {
                 path: '*',

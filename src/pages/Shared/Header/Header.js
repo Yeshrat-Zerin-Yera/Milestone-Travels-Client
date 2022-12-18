@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const Header = () => {
+    const { user, logOut } = useContext(AuthContext);
+
     return (
         <div className="navbar bg-base-200 rounded-lg py-6">
             <div className="navbar-start">
@@ -14,7 +17,12 @@ const Header = () => {
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         <li><Link to='/'>Home</Link></li>
                         <li><Link to='/services'>Services</Link></li>
-                        <li><Link to='/myreviews'>My Reviews</Link></li>
+                        {
+                            user?.uid ? <>
+                                <li><Link to='/myreviews'>My Reviews</Link></li>
+                                <li><Link to='/addservice'>Add Service</Link></li>
+                            </> : undefined
+                        }
                         <li><Link to='/blogs'>Blogs</Link></li>
                     </ul>
                 </div>
@@ -26,13 +34,21 @@ const Header = () => {
                 <ul className="menu menu-horizontal px-1">
                     <li><Link to='/'>Home</Link></li>
                     <li><Link to='/services'>Services</Link></li>
-                    <li><Link to='/myreviews'>My Reviews</Link></li>
+                    {
+                        user?.uid ? <>
+                            <li><Link to='/myreviews'>My Reviews</Link></li>
+                            <li><Link to='/addservice'>Add Service</Link></li>
+                        </> : undefined
+                    }
                     <li><Link to='/blogs'>Blogs</Link></li>
                 </ul>
             </div>
             {/* Right Links */}
             <div className="navbar-end">
-                <Link to='/signin' className='btn btn-primary mr-3'>Sign In</Link>
+                {
+                    user?.uid ? <Link to='/signin' onClick={logOut} className='btn btn-primary'>Sign Out</Link>
+                        : <Link to='/signin' className='btn btn-primary mr-3'>Sign In</Link>
+                }
             </div>
         </div>
     );
