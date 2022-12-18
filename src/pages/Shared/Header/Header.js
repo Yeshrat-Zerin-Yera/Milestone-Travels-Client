@@ -19,7 +19,7 @@ const Header = () => {
                     </ul>
                 </div>
                 {/* Name */}
-                <Link className="btn btn-ghost normal-case text-xl">Milestone Travels</Link>
+                <Link to='/' className="btn btn-ghost normal-case text-xl">Milestone Travels</Link>
             </div>
             {/* Middle Links */}
             <div className="navbar-center hidden lg:flex">
@@ -32,7 +32,7 @@ const Header = () => {
             </div>
             {/* Right Links */}
             <div className="navbar-end">
-                <Link to='/signin'>Sign In</Link>
+                <Link to='/signin' className='btn btn-primary'>Sign In</Link>
             </div>
         </div>
     );
