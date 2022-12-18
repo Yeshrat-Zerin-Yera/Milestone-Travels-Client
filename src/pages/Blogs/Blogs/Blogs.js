@@ -1,9 +1,16 @@
 import React from 'react';
+import { useLoaderData } from 'react-router-dom';
+import BlogCard from '../BlogCard/BlogCard';
 
 const Blogs = () => {
+    const blogs = useLoaderData();
+    console.log(blogs?.id);
+
     return (
-        <div>
-            blogs
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 xl:gap-24 my-12 mx-3'>
+            {
+                blogs.map(blog => <BlogCard key={blog?._id} blog={blog}></BlogCard>)
+            }
         </div>
     );
 };
