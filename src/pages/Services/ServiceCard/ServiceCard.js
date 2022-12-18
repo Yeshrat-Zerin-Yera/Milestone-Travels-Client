@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ServiceRating from '../ServiceRating/ServiceRating';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
 
 const ServiceCard = ({ service }) => {
     const { _id, serviceName, img, price, rating, description } = service;
@@ -8,7 +9,11 @@ const ServiceCard = ({ service }) => {
     return (
         <div className="card w-full bg-base-100 shadow-2xl">
             {/* Service Image */}
-            <figure><img src={img} alt="Shoes" /></figure>
+            <PhotoProvider>
+                <PhotoView src={img}>
+                    <figure><img src={img} style={{ objectFit: 'cover' }} alt="" /></figure>
+                </PhotoView>
+            </PhotoProvider>
             {/* Service Details */}
             <div className="card-body">
                 <p className='text-right text-2xl text-warning font-semibold'>{price}$</p>
