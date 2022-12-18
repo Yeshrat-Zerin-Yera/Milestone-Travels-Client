@@ -24,7 +24,7 @@ const ServiceReviewSectionReviews = ({ service }) => {
                     {
                         review?.reviewMessage ? <p className='my-3'>{review.reviewMessage}</p> : <p className='my-3 text-slate-700'><i>No Message</i></p>
                     }
-                    {/* <ServiceRating value={rating}></ServiceRating> */}
+                    <ServiceRating value={review?.rating}></ServiceRating>
                 </div>)
             }
         </div>
