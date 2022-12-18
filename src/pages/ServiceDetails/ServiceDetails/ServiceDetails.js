@@ -2,11 +2,13 @@ import React, { useContext, useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
+import useTitle from '../../../hooks/useTitle';
 import ReviewForm from '../ReviewForm/ReviewForm';
 import ServiceDetailsSection from '../ServiceDetailsSection/ServiceDetailsSection';
 import ServicesReviews from '../ServicesReviews/ServicesReviews';
 
 const ServiceDetails = () => {
+    useTitle('Service Details');
     const service = useLoaderData();
     const { user } = useContext(AuthContext);
     const [rating, setRating] = useState('5');
