@@ -6,7 +6,7 @@ const ServicesReviews = ({ reviews }) => {
     return (
         <div className='lg:w-1/2 h-96 overflow-y-auto no-scrollbar'>
             {
-                reviews.map(review => <div key={Math.random(100000000000)} className='flex justify-between border p-6 rounded-lg m-3'>
+                reviews.map(review => <div key={review?._id} className='flex justify-between border p-6 rounded-lg m-3'>
                     <div className='mr-12'>
                         <div className='flex items-center gap-3 mb-3'>
                             {/* Image */}

@@ -7,7 +7,7 @@ const MyReviewCard = ({ review, handleDeleteMyReview }) => {
     const { _id, userImg, userName, userEmail, serviceName, date, time, reviewMessage, rating } = review;
 
     return (
-        <div key={Math.random(100000000000)} className='border p-6 rounded-lg m-3 relative'>
+        <div className='border p-6 rounded-lg m-3 relative'>
             <div className='flex items-center gap-3'>
                 {/* Image */}
                 {
