@@ -3,7 +3,7 @@ import ServiceRating from '../../Services/ServiceRating/ServiceRating';
 
 const ServicesReviews = ({ reviews }) => {
     return (
-        <div className='lg:w-1/2'>
+        <div className='lg:w-1/2 h-96 overflow-y-auto no-scrollbar'>
             {
                 reviews.map(review => <div key={Math.random(100000000000)} className='flex justify-between border p-6 rounded-lg m-3'>
                     <div className='mr-12'>
