@@ -23,13 +23,17 @@ const ServiceDetails = () => {
     // Handle Add Review
     const handleAddReview = event => {
         event.preventDefault();
-        const form = event.target;
-        const reviewMessage = form.message.value;
+        const form = event?.target;
+        const reviewMessage = form?.message?.value;
         const userImg = user?.photoURL;
         const userName = user?.displayName;
         const userEmail = user?.email;
         const serviceId = service?._id;
         const serviceName = service?.serviceName;
+        // Get Current Date
+        const current = new Date();
+        const date = `${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`;
+        const time = `${current.getHours()}:${current.getMinutes()}`;
         const review = {
             userImg,
             userName,
@@ -37,35 +41,37 @@ const ServiceDetails = () => {
             serviceId,
             serviceName,
             reviewMessage,
-            rating
+            rating,
+            date,
+            time
         }
         if (user) {
             console.log(review);
+            fetch('http://localhost:5000/reviews', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(review)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.acknowledged) {
+                        toast.success('Review Added Successfully');
+                        const newReviews = [review, ...reviews];
+                        setReviews(newReviews)
+                        event.target.reset();
+                    }
+                })
         }
         else {
             toast.error('Sign In To Add Review');
         }
-        fetch('http://localhost:5000/reviews', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(review)
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.acknowledged) {
-                    toast.success('Review Added Successfully');
-                    const newReviews = [...reviews, review];
-                    setReviews(newReviews)
-                    event.target.reset();
-                }
-            })
     };
 
     // Handle Rating
     const handleRating = event => {
-        const rating = event.target.value;
+        const rating = event?.target?.value;
         setRating(rating);
     };
 

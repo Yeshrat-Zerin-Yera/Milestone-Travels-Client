@@ -1,3 +1,4 @@
+import CalculateTime from '../../Calculations/CalculateTime';
 import ServiceRating from '../../Services/ServiceRating/ServiceRating';
 
 const ServicesReviews = ({ reviews }) => {
@@ -8,17 +9,22 @@ const ServicesReviews = ({ reviews }) => {
                     <div className='mr-12'>
                         {/* Image */}
                         <div className='flex items-center gap-3 mb-3'>
-                            <img src={review.userImg} alt="" className='rounded-full w-12 h-12' />
+                            <img src={review?.userImg} alt="" className='rounded-full w-12 h-12' />
                             {/* Name */}
-                            <h2 className='text-[20px]'>{review.userName}</h2>
+                            <h2 className='text-[20px]'>{review?.userName}</h2>
                         </div>
                         {/* Email */}
-                        <p className='my-3'>{review.userEmail}</p>
+                        <p className='my-3'>{review?.userEmail}</p>
                         {/* Rating */}
                         <ServiceRating value={review?.rating}></ServiceRating>
+                        {/* Date & Time */}
+                        <div className='mt-3'>
+                            <CalculateTime review={review}></CalculateTime>
+                            <span className='ml-3'>{review?.date}</span>
+                        </div>
                     </div>
                     {/* Message */}
-                    <div className='overflow-auto'>
+                    <div className='break-words overflow-clip'>
                         {
                             review?.reviewMessage ? <p className='my-3'>{review.reviewMessage}</p> : <p className='my-3 text-slate-600'><i>No Message</i></p>
                         }
