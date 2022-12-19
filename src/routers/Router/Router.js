@@ -9,7 +9,7 @@ import Home from '../../pages/Home/Home/Home';
 import MyReviews from '../../pages/MyReviews/MyReviews/MyReviews';
 import ServiceDetails from '../../pages/ServiceDetails/ServiceDetails/ServiceDetails';
 import Services from '../../pages/Services/Services/Services';
-import SignIn from '../../pages/SignUpAndLogin/Login/SignIn';
+import SignIn from '../../pages/SignUpAndLogin/SignIn/SignIn';
 import SignUp from '../../pages/SignUpAndLogin/SignUp/SignUp';
 import PrivateRouter from '../PrivateRouter/PrivateRouter';
 
