@@ -1,5 +1,5 @@
 import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
-import React from 'react';
+import React, { useState } from 'react';
 import { useContext } from 'react';
 import toast from 'react-hot-toast';
 import Google from '../../../assets/icons/google.svg';
@@ -7,6 +7,7 @@ import Github from '../../../assets/icons/github.svg';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import useTitle from '../../../hooks/useTitle';
+import ClipLoader from 'react-spinners/ClipLoader';
 
 const SignUp = () => {
     useTitle('Sign Up');
@@ -16,9 +17,11 @@ const SignUp = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const from = location?.state?.from?.pathname || '/';
+    const [loading, setLoading] = useState(false);
 
     // Handle Submit
     const handleSubmit = event => {
+        setLoading(true);
         event.preventDefault();
         const form = event.target;
         const name = form.name.value;
@@ -32,7 +35,8 @@ const SignUp = () => {
                 console.log(user);
                 handleUpdateUserProfile(name, photoURL);
                 form.reset();
-                navigate(-1);
+                navigate(from, { replace: true });
+                setLoading(false);
             })
             .catch(error => {
                 toast.error(error.message);
@@ -42,11 +46,13 @@ const SignUp = () => {
 
     // Handle Google Sign Up
     const handleGoogleSignUp = () => {
+        setLoading(true);
         signInProvider(googleProvider)
             .then(result => {
                 const user = result.user;
                 console.log(user);
                 navigate(from, { replace: true });
+                setLoading(false);
             })
             .catch(error => {
                 console.error(error);
@@ -56,11 +62,13 @@ const SignUp = () => {
 
     // Handle Github Sign Up
     const handleGithubSignUp = () => {
+        setLoading(true);
         signInProvider(githubProvider)
             .then(result => {
                 const user = result.user;
                 console.log(user);
                 navigate(from, { replace: true });
+                setLoading(false);
             })
             .catch(error => {
                 console.error(error);
@@ -78,6 +86,12 @@ const SignUp = () => {
                 toast.error(error.message);
             })
     };
+
+    if (loading) {
+        return <div className='w-full flex justify-center'>
+            <ClipLoader color="#36d7b7" />
+        </div>
+    }
 
     return (
         <div className="sm:w-[500px] mx-auto my-12">

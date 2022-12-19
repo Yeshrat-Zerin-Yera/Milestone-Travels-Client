@@ -29,11 +29,13 @@ const ServiceDetails = () => {
         const userName = user?.displayName;
         const userEmail = user?.email;
         const serviceId = service?._id;
+        const serviceName = service?.serviceName;
         const review = {
             userImg,
             userName,
             userEmail,
             serviceId,
+            serviceName,
             reviewMessage,
             rating
         }
@@ -66,7 +68,6 @@ const ServiceDetails = () => {
         const rating = event.target.value;
         setRating(rating);
     };
-
 
     return (
         <div className='my-12 font-semibold'>

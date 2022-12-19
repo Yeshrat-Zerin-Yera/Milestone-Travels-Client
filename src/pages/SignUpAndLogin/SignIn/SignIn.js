@@ -1,5 +1,5 @@
 import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
-import React from 'react';
+import React, { useState } from 'react';
 import { useContext } from 'react';
 import toast from 'react-hot-toast';
 import Google from '../../../assets/icons/google.svg';
@@ -7,6 +7,7 @@ import Github from '../../../assets/icons/github.svg';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import useTitle from '../../../hooks/useTitle';
+import ClipLoader from 'react-spinners/ClipLoader';
 
 const SignIn = () => {
     useTitle('Sign In');
@@ -16,9 +17,11 @@ const SignIn = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const from = location?.state?.from?.pathname || '/';
+    const [loading, setLoading] = useState(false);
 
     // Handle Submit
     const handleSubmit = event => {
+        setLoading(true);
         event.preventDefault();
         const form = event.target;
         const email = form.email.value;
@@ -30,6 +33,7 @@ const SignIn = () => {
                 console.log(user);
                 form.reset();
                 navigate(from, { replace: true });
+                setLoading(false);
             })
             .catch(error => {
                 console.error(error);
@@ -39,11 +43,13 @@ const SignIn = () => {
 
     // Handle Google Sign In
     const handleGoogleSignIn = () => {
+        setLoading(true);
         signInProvider(googleProvider)
             .then(result => {
                 const user = result.user;
                 console.log(user);
                 navigate(from, { replace: true });
+                setLoading(false);
             })
             .catch(error => {
                 console.error(error);
@@ -53,17 +59,26 @@ const SignIn = () => {
 
     // Handle Github Sign In
     const handleGithubSignIn = () => {
+        setLoading(true);
         signInProvider(githubProvider)
             .then(result => {
                 const user = result.user;
                 console.log(user);
                 navigate(from, { replace: true });
+                setLoading(false);
             })
             .catch(error => {
                 console.error(error);
                 toast.error(error.message);
             })
     };
+
+
+    if (loading) {
+        return <div className='w-full flex justify-center'>
+            <ClipLoader color="#36d7b7" />
+        </div>
+    }
 
     return (
         <div className='sm:w-[450px] mx-auto my-12'>
