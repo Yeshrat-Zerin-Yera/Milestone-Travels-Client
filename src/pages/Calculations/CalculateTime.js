@@ -1,6 +1,5 @@
-const CalculateTime = ({ review }) => {
-    const reviewTime = review?.time;
-    let [hour, minute] = reviewTime.split(':');
+const CalculateTime = ({ time }) => {
+    let [hour, minute] = time.split(':');
     let meridiem;
     hour = parseInt(hour);
     minute = parseInt(minute);

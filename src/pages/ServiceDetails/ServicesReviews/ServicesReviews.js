@@ -22,7 +22,7 @@ const ServicesReviews = ({ reviews }) => {
                         <ServiceRating value={review?.rating}></ServiceRating>
                         {/* Date & Time */}
                         <div className='mt-3'>
-                            <CalculateTime review={review}></CalculateTime>
+                            <CalculateTime time={review?.time}></CalculateTime>
                             <span className='ml-3'>{review?.date}</span>
                         </div>
                     </div>
