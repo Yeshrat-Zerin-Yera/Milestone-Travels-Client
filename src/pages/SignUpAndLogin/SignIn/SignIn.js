@@ -38,6 +38,7 @@ const SignIn = () => {
             .catch(error => {
                 console.error(error);
                 toast.error(error.message);
+                setLoading(false);
             })
     };
 
@@ -54,6 +55,7 @@ const SignIn = () => {
             .catch(error => {
                 console.error(error);
                 toast.error(error.message);
+                setLoading(false);
             })
     };
 
@@ -70,6 +72,7 @@ const SignIn = () => {
             .catch(error => {
                 console.error(error);
                 toast.error(error.message);
+                setLoading(false);
             })
     };
 
