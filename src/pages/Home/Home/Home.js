@@ -1,7 +1,9 @@
 import React from 'react';
 import useTitle from '../../../hooks/useTitle';
 import AddedServices from '../AddedServices/AddedServices';
+import BookNow from '../BookNow/BookNow';
 import Carousel from '../Carousel/Carousel';
+import FAQ from '../FAQ/FAQ';
 import Services from '../HomeServices/HomeServices';
 
 const Home = () => {
@@ -12,6 +14,8 @@ const Home = () => {
             <Carousel></Carousel>
             <Services></Services>
             <AddedServices></AddedServices>
+            <FAQ></FAQ>
+            <BookNow></BookNow>
         </div>
     );
 };
