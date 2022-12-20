@@ -18,11 +18,11 @@ Github client side private repository link: [https://github.com/Porgramming-Hero
 
 ### Livesite Link Of Server Side
 
-Firebase livesite link: [https://xplore-tailwind-react-server.vercel.app](https://xplore-tailwind-react-server.vercel.app)
+Firebase livesite link: [https://milestone-travels-server.vercel.app/](https://milestone-travels-server.vercel.app/)
 
 ### Livesite Link Of Client Side
 
-Firebase livesite link: [https://xplore-tailwind-react-client.web.app](https://xplore-tailwind-react-client.web.app)
+Firebase livesite link: [https://milestone-travels.web.app/](https://milestone-travels.web.app/)
 
 
 ## Features
