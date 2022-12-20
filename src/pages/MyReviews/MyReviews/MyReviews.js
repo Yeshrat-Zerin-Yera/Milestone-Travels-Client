@@ -15,6 +15,32 @@ const MyReviews = () => {
             .then(data => setReviews(data))
     }, [user?.email]);
 
+    // Handle Review Update
+    const handleReviewUpdate = (id, newMessage, newRating) => {
+        fetch(`http://localhost:5000/myreviews/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({ reviewMessage: newMessage, rating: newRating })
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.modifiedCount > 0) {
+                    const remaining = reviews.filter(review => review?._id !== id);
+                    const updated = reviews.find(review => review?._id === id);
+                    updated.reviewMessage = newMessage;
+                    updated.rating = newRating;
+                    const newReviews = [updated, ...remaining];
+                    setReviews(newReviews);
+                    toast.success('Review Updated Successfull.');
+                }
+            })
+            .catch(error => console.error(error))
+    };
+
+
     // Handle Delete MyReview
     const handleDeleteMyReview = (id) => {
         const proceed = window.confirm('Are You Sure You Want To Delete This Review?');
@@ -46,6 +72,7 @@ const MyReviews = () => {
                     key={review?._id}
                     review={review}
                     handleDeleteMyReview={handleDeleteMyReview}
+                    handleReviewUpdate={handleReviewUpdate}
                 ></MyReviewCard>)
             }
         </div>
