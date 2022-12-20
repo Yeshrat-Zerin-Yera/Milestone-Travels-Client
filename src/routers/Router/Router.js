@@ -25,22 +25,22 @@ const router = createBrowserRouter([
             {
                 path: '/services',
                 element: <Services></Services>,
-                loader: () => fetch('http://localhost:5000/services')
+                loader: () => fetch('https://milestone-travels-server.vercel.app/services')
             },
             {
                 path: '/services/:id',
                 element: <ServiceDetails></ServiceDetails>,
-                loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`)
+                loader: ({ params }) => fetch(`https://milestone-travels-server.vercel.app/services/${params.id}`)
             },
             {
                 path: '/blogs',
                 element: <Blogs></Blogs>,
-                loader: () => fetch('http://localhost:5000/blogs')
+                loader: () => fetch('https://milestone-travels-server.vercel.app/blogs')
             },
             {
                 path: '/blogs/:id',
                 element: <BlogDetails></BlogDetails>,
-                loader: ({ params }) => fetch(`http://localhost:5000/blogs/${params.id}`)
+                loader: ({ params }) => fetch(`https://milestone-travels-server.vercel.app/blogs/${params.id}`)
             },
             {
                 path: '/myreviews',
@@ -49,7 +49,7 @@ const router = createBrowserRouter([
             {
                 path: '/addservice',
                 element: <PrivateRouter><AddService></AddService></PrivateRouter>,
-                loader: () => fetch('http://localhost:5000/services')
+                loader: () => fetch('https://milestone-travels-server.vercel.app/services')
             },
             {
                 path: '/signup',

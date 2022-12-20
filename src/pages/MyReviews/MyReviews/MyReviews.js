@@ -10,14 +10,14 @@ const MyReviews = () => {
     const { user } = useContext(AuthContext);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/myreviews?userEmail=${user?.email}`)
+        fetch(`https://milestone-travels-server.vercel.app/myreviews?userEmail=${user?.email}`)
             .then(res => res.json())
             .then(data => setReviews(data))
     }, [user?.email]);
 
     // Handle Review Update
     const handleReviewUpdate = (id, newMessage, newRating) => {
-        fetch(`http://localhost:5000/myreviews/${id}`, {
+        fetch(`https://milestone-travels-server.vercel.app/myreviews/${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json'
@@ -45,7 +45,7 @@ const MyReviews = () => {
     const handleDeleteMyReview = (id) => {
         const proceed = window.confirm('Are You Sure You Want To Delete This Review?');
         if (proceed) {
-            fetch(`http://localhost:5000/myreviews/${id}`, {
+            fetch(`https://milestone-travels-server.vercel.app/myreviews/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())

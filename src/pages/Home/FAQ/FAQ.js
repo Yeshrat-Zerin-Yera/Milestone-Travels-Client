@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 const FAQ = () => {
     const [FAQ, setFAQ] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/faq')
+        fetch('https://milestone-travels-server.vercel.app/faq')
             .then(res => res.json())
             .then(data => setFAQ(data))
     }, []);
