@@ -83,7 +83,7 @@ const AddService = () => {
                 <input type="email" name='email' defaultValue={user?.uid ? user?.email : 'Unregistered'} placeholder="Your Email" className="input w-full" readOnly />
             </div>
             {/* Message */}
-            <textarea name='message' className="textarea w-full h-40" placeholder="Your Message"></textarea>
+            <textarea name='message' className="textarea w-full h-40" placeholder="Your Message" maxLength="100"></textarea>
             {/* Submit Button */}
             <div className='flex justify-end'>
                 <button className="btn btn-primary text-white mt-6">Add Service</button>
